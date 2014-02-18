@@ -144,6 +144,10 @@ function jsmin(comment, input, level) {
     theLookahead = getc();
     return theLookahead;
   }
+  function peekIC() {
+    theLookahead = getcIC();
+    return theLookahead;
+  }
 
 
   /* next -- get the next character, excluding comments. peek() is used to see
@@ -175,8 +179,8 @@ function jsmin(comment, input, level) {
               c = getcIC(); // let it know it's inside an important comment
               switch(c) {
                 case '*':
-                  if(peek() == '/') {
-                    getc();
+                  if(peekIC() == '/') {
+                    getcIC();
                     return d + '*/';
                   }
                   d += c;
@@ -373,4 +377,3 @@ function jsmin(comment, input, level) {
   return comment + ret;
 
 }
-
