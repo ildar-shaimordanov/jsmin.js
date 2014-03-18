@@ -1,0 +1,29 @@
+1a2,9
+> jsmin.js - 2014-02-04
+> Author: Ildar Shaimordanov
+> This version was patched to keep important comments (denoted with /*!) 
+> unchanged. The previous version of jsmin.js ate asterisk symbols and 
+> modified some characters as well (for example TAB was replaced by SPACE). 
+> Sometimes, comments should stay unchanged (for example, a function could 
+> keep its resources within comments). So this version does it. 
+> 
+128,131c136
+<     if(c >= ' ' || c == '\n' || c == '\r') {
+<       return c;
+<     }
+<     return ' ';
+---
+>     return c;
+141a147,150
+>   function peekIC() {
+>     theLookahead = getcIC();
+>     return theLookahead;
+>   }
+173,174c182,183
+<                   if(peek() == '/') {
+<                     getc();
+---
+>                   if(peekIC() == '/') {
+>                     getcIC();
+176a186
+>                   d += c;
